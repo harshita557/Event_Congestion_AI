@@ -75,10 +75,14 @@ function App() {
         : (type === "number" ? Number(value) : value)
     });
   }
+const API_URL = "https://event-congestion-ai-4.onrender.com";
+
+
+
 
   async function predict() {
     try {
-      const res = await axios.post("http://127.0.0.1:8000/predict", form);
+      const res = await axios.post(`${API_URL}/predict`, form);
       setResult(res.data);
       loadHistory();
       loadAnalytics();
@@ -88,12 +92,12 @@ function App() {
   }
 
   async function loadHistory() {
-    const res = await axios.get("http://127.0.0.1:8000/history");
+    const res = await axios.get(`${API_URL}/history`);
     setHistory(res.data);
   }
 
   async function loadAnalytics() {
-    const res = await axios.get("http://127.0.0.1:8000/analytics");
+    const res = await axios.get(`${API_URL}/analytics`);
     setAnalytics(res.data);
   }
 
